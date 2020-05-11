@@ -11,8 +11,8 @@ public class StateCensusAnalyserTest {
     @Test
     public void check_number_records_loaded() throws IOException {
             StateCensusAnalyser analyser = new StateCensusAnalyser("./stateCensusData.csv", "./stateCode.csv");
-            Assert.assertEquals(29, analyser.getStateCensusMap().size());
-            Assert.assertEquals(37, analyser.getStateCodeMap().size());
+            Assert.assertEquals(29, analyser.getStatesCSVDataBuilder().getStateCensusMap().size());
+            Assert.assertEquals(37, analyser.getStatesCSVDataBuilder().getStateCodeMap().size());
     }
 
     @Test
