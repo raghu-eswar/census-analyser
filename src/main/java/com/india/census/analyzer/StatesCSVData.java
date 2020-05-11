@@ -14,12 +14,12 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatesCSVDataBuilder {
-    private static StatesCSVDataBuilder statesCSVDataBuilder;
+public class StatesCSVData {
+    private static StatesCSVData statesCSVData;
     private Map<String, StateCensus> stateCensusMap;
     private Map<String, StateCode> stateCodeMap;
 
-    private StatesCSVDataBuilder(String stateCensusDataPath, String stateCodeDataPath) throws IOException {
+    private StatesCSVData(String stateCensusDataPath, String stateCodeDataPath) throws IOException {
         this.stateCensusMap = readStateCensusData(stateCensusDataPath);
         this.stateCodeMap = readStateCodeData(stateCodeDataPath);
     }
@@ -30,6 +30,14 @@ public class StatesCSVDataBuilder {
 
     public Map<String, StateCode> getStateCodeMap() {
         return stateCodeMap;
+    }
+
+    public void setStateCensusMap(Map<String, StateCensus> stateCensusMap) {
+        this.stateCensusMap = stateCensusMap;
+    }
+
+    public void setStateCodeMap(Map<String, StateCode> stateCodeMap) {
+        this.stateCodeMap = stateCodeMap;
     }
 
     private Map<String, StateCode> readStateCodeData(String path) throws IOException {
@@ -73,10 +81,10 @@ public class StatesCSVDataBuilder {
         }
     }
 
-    public static StatesCSVDataBuilder getInstance(String stateCensusDataPath, String stateCodeDataPath ) throws IOException {
-        if (statesCSVDataBuilder == null)
-            statesCSVDataBuilder = new StatesCSVDataBuilder(stateCensusDataPath, stateCodeDataPath);
-        return statesCSVDataBuilder;
+    public static StatesCSVData getInstance(String stateCensusDataPath, String stateCodeDataPath ) throws IOException {
+        if (statesCSVData == null)
+            statesCSVData = new StatesCSVData(stateCensusDataPath, stateCodeDataPath);
+        return statesCSVData;
     }
 }
 
